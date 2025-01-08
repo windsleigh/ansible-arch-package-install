@@ -1,0 +1,17 @@
+---
+# install_packages.yml
+- name: Install packages using pacman
+  hosts: localhost  # We'll start with localhost for simplicity
+  become: true     # This is needed for pacman operations (sudo)
+
+  tasks:
+    - name: Update pacman package cache
+      pacman:
+        update_cache: yes
+
+    - name: Install some common packages
+      pacman:
+        name:
+          - neofetch    # System information tool
+          - htop        # Interactive process viewer
+        state: present
